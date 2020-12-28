@@ -7,6 +7,19 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 
+import * as yup from 'yup';
+
+let SignUpSchema = yup.object().shape({
+  firstname: yup.string().required('FirstName is required!'),
+  lastname: yup.string().required('LastName is required!'),
+  email: yup.email().required('Email is required!'),
+  password: yup
+    .string()
+    .min(6, 'Password is too short.')
+    .max(20, 'Password is too long.')
+    .required('This field is required.'),
+});
+
 const useStyles = makeStyles((theme) => ({
   '@global': {
     body: {
